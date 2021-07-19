@@ -1,5 +1,8 @@
 package ru.netology.servlet;
 
+import org.apache.catalina.core.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.netology.controller.PostController;
 import ru.netology.repository.PostRepository;
 import ru.netology.service.PostService;
@@ -9,15 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
-  private PostController controller;
+  private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+  private final PostController controller = context.getBean(PostController.class);
   private String requestPath;
-
-  @Override
-  public void init() {
-    final var repository = new PostRepository();
-    final var service = new PostService(repository);
-    controller = new PostController(service);
-  }
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
