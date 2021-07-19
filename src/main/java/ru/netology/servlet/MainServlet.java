@@ -1,6 +1,7 @@
 package ru.netology.servlet;
 
 import org.apache.catalina.core.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.netology.controller.PostController;
 import ru.netology.repository.PostRepository;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
-  private final ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext ("applicationContext.xml");
+  private final AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
   private final PostController controller = context.getBean(PostController.class);
   private String requestPath;
 

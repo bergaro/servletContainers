@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 // Simple database
-@Repository
 public class PostRepository {
 
   private static final Map<Long, Post> simpleDatabase = new ConcurrentHashMap<>();
